@@ -16,7 +16,7 @@ namespace RobustPredicates
             double[] B = new double[4];
             MacrosHelpers.TwoTwoDiff(detleft, detlefttail, detright, detrighttail, out B[3], out B[2], out B[1], out B[0]);
 
-            double det = ArithmeticFunctionsHelpers.Estimate(B);
+            double det = ArithmeticFunctionsHelpers.Estimate(4, B);
             double errbound = MacrosHelpers.CcwerrboundB * detsum;
             if ((det >= errbound) || (-det >= errbound))
             {
@@ -48,20 +48,20 @@ namespace RobustPredicates
             MacrosHelpers.TwoTwoDiff(s1, s0, t1, t0, out u[3], out u[2], out u[1], out u[0]);
 
             double[] C1 = new double[8];
-            int C1length = ArithmeticFunctionsHelpers.FastExpansionSumZeroeLim(4, B, 4, u, C1);
+            int C1length = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(4, B, 4, u, C1);
 
             MacrosHelpers.TwoProduct(acx, bcytail, out s1, out s0);
             MacrosHelpers.TwoProduct(acy, bcxtail, out t1, out t0);
             MacrosHelpers.TwoTwoDiff(s1, s0, t1, t0, out u[3], out u[2], out u[1], out u[0]);
             double[] C2 = new double[12];
-            int C2length = ArithmeticFunctionsHelpers.FastExpansionSumZeroeLim(C1length, C1, 4, u, C2);
+            int C2length = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(C1length, C1, 4, u, C2);
 
             MacrosHelpers.TwoProduct(acxtail, bcytail, out s1, out s0);
             MacrosHelpers.TwoProduct(acytail, bcxtail, out t1, out t0);
             MacrosHelpers.TwoTwoDiff(s1, s0, t1, t0, out u[3], out u[2], out u[1], out u[0]);
 
             double[] D = new double[16];
-            int Dlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroeLim(C2length, C2, 4, u, D);
+            int Dlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(C2length, C2, 4, u, D);
 
             return D[Dlength - 1];
         }
@@ -97,8 +97,8 @@ namespace RobustPredicates
 
             double[] v = new double[8];
             double[] w = new double[12];
-            int vlen = ArithmeticFunctionsHelpers.FastExpansionSumZeroeLim(4, aterms, 4, bterms, v);
-            int wlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroeLim(vlen, v, 4, cterms, w);
+            int vlen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(4, aterms, 4, bterms, v);
+            int wlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(vlen, v, 4, cterms, w);
 
             return w[wlength - 1];
         }
@@ -122,7 +122,7 @@ namespace RobustPredicates
                             out bxay[3], out bxay[2], out bxay[1], out bxay[0]);
 
             double[] deter = new double[16];
-            int deterlen = ArithmeticFunctionsHelpers.FastExpansionSumZeroeLim(8, axby, 8, bxay, deter);
+            int deterlen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(8, axby, 8, bxay, deter);
 
             return deter[deterlen - 1];
         }

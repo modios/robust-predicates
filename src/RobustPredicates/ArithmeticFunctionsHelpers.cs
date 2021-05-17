@@ -2,22 +2,20 @@
 {
     internal static class ArithmeticFunctionsHelpers
     {
-        internal static double Estimate(double[] e)
+        internal static double Estimate(int len, double[] e)
         {
             int eindex;
 
             double Q = e[0];
-            for (eindex = 1; eindex < e.Length; eindex++)
+            for (eindex = 1; eindex < len; eindex++)
             {
                 Q += e[eindex];
             }
             return Q;
         }
 
-
-        internal static int ScaleExpansionZeroeLim(double[] e, double b, double[] h)
+        internal static int ScaleExpansionZeroelim(int elen, double[] e, double b, double[] h)
         {
-            int elen = e.Length;
             MacrosHelpers.Split(b, out double bhi, out double blo);
             MacrosHelpers.TwoProductPresplit(e[0], b, bhi, blo, out double Q, out double hh);
             int hindex = 0;
@@ -47,7 +45,7 @@
             return hindex;
         }
 
-        internal static int FastExpansionSumZeroeLim(int elen, double[] e, int flen, double[] f, double[] h)
+        internal static int FastExpansionSumZeroelim(int elen, double[] e, int flen, double[] f, double[] h)
         {
             int findex;
             double Q;

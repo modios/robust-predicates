@@ -18,7 +18,7 @@ namespace RobustPredicates.Test
         public void Robust_FromFile_ShouldSucceed()
         {
             double[] numbers =
-              File.ReadAllLines("testData/points2D.txt").Select(n => n.Split()).SelectMany(x => x).Select(s => double.Parse(s)).ToArray();
+              File.ReadAllLines("testData/orient2Dpoints2D.txt").Select(n => n.Split()).SelectMany(x => x).Select(s => double.Parse(s)).ToArray();
             double[] results =
              File.ReadAllLines("testData/orient2DResults.txt").Select(n => n.Split()).SelectMany(x => x).Select(s => double.Parse(s)).ToArray();
             int count = 0;
@@ -43,7 +43,7 @@ namespace RobustPredicates.Test
         public void Fast_FromFile_ShouldSucceed()
         {
             double[] numbers =
-              File.ReadAllLines("testData/points2D.txt").Select(n => n.Split()).SelectMany(x => x).Select(s => double.Parse(s)).ToArray();
+              File.ReadAllLines("testData/orient2Dpoints2D.txt").Select(n => n.Split()).SelectMany(x => x).Select(s => double.Parse(s)).ToArray();
             double[] results =
              File.ReadAllLines("testData/orient2DResults.txt").Select(n => n.Split()).SelectMany(x => x).Select(s => double.Parse(s)).ToArray();
             int count = 0;
@@ -53,6 +53,21 @@ namespace RobustPredicates.Test
                     new double[] { numbers[i], numbers[i + 1] },
                     new double[] { numbers[i + 2], numbers[i + 3] },
                     new double[] { numbers[i + 4], numbers[i + 5] }), 4);
+            }
+        }
+
+        [Fact]
+        public void Robust_FromFile_Set2_ShouldSucceed()
+        {
+            double[] numbers =
+              File.ReadAllLines("testData/orient2d.txt").Select(n => n.Split()).SelectMany(x => x).Select(s => double.Parse(s)).ToArray();
+
+            for (int i = 0; i < 1000; i += 8)
+            {
+                Assert.Equal(numbers[i + 7], Orient2D.Robust(
+                    new double[] { numbers[i + 1], numbers[i + 2] },
+                    new double[] { numbers[i + 3], numbers[i + 4] },
+                    new double[] { numbers[i + 5], numbers[i + 6] }) > 0 ? 1 : -1);
             }
         }
     }

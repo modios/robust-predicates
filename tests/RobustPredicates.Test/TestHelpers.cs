@@ -13,7 +13,7 @@ namespace RobustPredicates.Test
 
         private static double GetRandomDouble(double min, double max) =>   (max - min) * _random.NextDouble() + min;
                 
-        public static double[] Create2DRandomPoints(double min, double max, int seed = 0)
+        public static double[] Create2DRandomPoints(double min, double max, int numberOfPoints = 3, int seed = 0)
         {
             if(_random == default(Random))
             {
@@ -22,14 +22,24 @@ namespace RobustPredicates.Test
 
             GetRandomDouble(min, max);
 
-            return Enumerable.Range(0, 6).Select(s => GetRandomDouble(min, max)).ToArray();
+            return Enumerable.Range(0, numberOfPoints * 2).Select(s => GetRandomDouble(min, max)).ToArray();
         }
 
-        public static async void Create2DPointsAndWriteToFile(int numberOfPoint, double min, double max)
+        public static async void Create2DPointsAndWriteToFile(int numberOfPoint, double min, double max, int perRow = 3 , string filename ="points2D.txt")
         {
-            var lines = Enumerable.Range(0, numberOfPoint).Select(p => Create2DRandomPoints(min, max)).Select(
-                r => $"{r[0]} {r[1]} {r[2]} {r[3]} {r[4]} {r[5]}" );
-            await File.WriteAllLinesAsync("points2D.txt", lines);
+            var lines = Enumerable.Range(0, numberOfPoint).Select(p => Create2DRandomPoints(min, max, perRow)).Select(
+                r => {
+                    var stringBuilder = new StringBuilder();
+                    stringBuilder.Append(r[0]);
+                    for(int i=1; i< r.Length; i++)
+                    {
+                        stringBuilder.Append(" " + r[i] );
+                    }
+
+                    return stringBuilder.ToString();
+                }).ToArray();
+
+            await File.WriteAllLinesAsync(filename, lines);
         }
     }
 }

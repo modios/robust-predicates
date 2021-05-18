@@ -228,6 +228,15 @@
             EightOneSum(_k, _6, _5, _4, _3, _2, _1, _0, b1, out x9, out x8, out x7, out x6, out x5, out x4, out x3, out x2, out x1);
         }
 
+        internal static void TwoOneProduct(double a1, double a0, double b, out double x3, out double x2, out double x1, out double x0)
+        {
+            Split(b, out double bhi, out double blo);
+            TwoProductPresplit(a0, b, bhi, blo, out double _i, out x0);
+            TwoProductPresplit(a1, b, bhi, blo, out double _j, out double _0);
+            TwoSum(_i, _0, out double _k, out x1);
+            FastTwoSum(_j, _k, out x3, out x2);
+        }
+         
         internal static void TwoTwoProduct(double a1, double a0, double b1, double b0,
             out double x7, out double x6, out double x5, out double x4, out double x3, out double x2, out double x1, out double x0)
         {

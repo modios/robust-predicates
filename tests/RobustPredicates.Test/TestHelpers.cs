@@ -13,7 +13,7 @@ namespace RobustPredicates.Test
 
         private static double GetRandomDouble(double min, double max) =>   (max - min) * _random.NextDouble() + min;
                 
-        public static double[] Create2DRandomPoints(double min, double max, int numberOfPoints = 3, int seed = 0)
+        public static double[] CreateRandomPoints(double min, double max, int numberOfPoints = 3, int dimensions = 2, int seed = 0)
         {
             if(_random == default(Random))
             {
@@ -22,12 +22,12 @@ namespace RobustPredicates.Test
 
             GetRandomDouble(min, max);
 
-            return Enumerable.Range(0, numberOfPoints * 2).Select(s => GetRandomDouble(min, max)).ToArray();
+            return Enumerable.Range(0, numberOfPoints * dimensions).Select(s => GetRandomDouble(min, max)).ToArray();
         }
 
-        public static async void Create2DPointsAndWriteToFile(int numberOfPoint, double min, double max, int perRow = 3 , string filename ="points2D.txt")
+        public static async void Create2DPointsAndWriteToFile(int numberOfPoint, double min, double max, int perRow = 3 , int dimensions = 2, string filename ="points2D.txt")
         {
-            var lines = Enumerable.Range(0, numberOfPoint).Select(p => Create2DRandomPoints(min, max, perRow)).Select(
+            var lines = Enumerable.Range(0, numberOfPoint).Select(p => CreateRandomPoints(min, max, perRow, dimensions)).Select(
                 r => {
                     var stringBuilder = new StringBuilder();
                     stringBuilder.Append(r[0]);

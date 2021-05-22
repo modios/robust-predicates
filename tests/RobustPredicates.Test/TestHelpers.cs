@@ -25,7 +25,7 @@ namespace RobustPredicates.Test
             return Enumerable.Range(0, numberOfPoints * dimensions).Select(s => GetRandomDouble(min, max)).ToArray();
         }
 
-        public static async void Create2DPointsAndWriteToFile(int numberOfPoint, double min, double max, int perRow = 3 , int dimensions = 2, string filename ="points2D.txt")
+        public static async void CreatePointsAndWriteToFile(int numberOfPoint, double min, double max, int perRow = 3 , int dimensions = 2, string filename ="points2D.txt")
         {
             var lines = Enumerable.Range(0, numberOfPoint).Select(p => CreateRandomPoints(min, max, perRow, dimensions)).Select(
                 r => {

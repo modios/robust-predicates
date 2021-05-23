@@ -1,6 +1,6 @@
 ﻿namespace RobustPredicates
 {
-    internal static class ArithmeticFunctionsHelpers
+    internal static class ArithmeticFunctions
     {
         internal static double Estimate(int len, double[] e)
         {

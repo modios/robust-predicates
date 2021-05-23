@@ -22,14 +22,14 @@ namespace RobustPredicates
             var bc = new double[4];
             MacrosHelpers.TwoTwoDiff(bdxcdy1, bdxcdy0, cdxbdy1, cdxbdy0, out bc[3], out bc[2], out bc[1], out bc[0]);
             double[] adet = new double[8];
-            var alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, bc, adz, adet);
+            var alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, bc, adz, adet);
 
             MacrosHelpers.TwoProduct(cdx, ady, out double cdxady1, out double cdxady0);
             MacrosHelpers.TwoProduct(adx, cdy, out double adxcdy1, out double adxcdy0);
             var ca = new double[4];
             MacrosHelpers.TwoTwoDiff(cdxady1, cdxady0, adxcdy1, adxcdy0, out ca[3], out ca[2], out ca[1], out ca[0]);
             double[] bdet = new double[8];
-            var blen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, ca, bdz, bdet);
+            var blen = ArithmeticFunctions.ScaleExpansionZeroelim(4, ca, bdz, bdet);
 
             MacrosHelpers.TwoProduct(adx, bdy, out double adxbdy1, out double adxbdy0);
             MacrosHelpers.TwoProduct(bdx, ady, out double bdxady1, out double bdxady0);
@@ -37,14 +37,14 @@ namespace RobustPredicates
             MacrosHelpers.TwoTwoDiff(adxbdy1, adxbdy0, bdxady1, bdxady0, out ab[3], out ab[2], out ab[1], out ab[0]);
 
             double[] cdet = new double[8];
-            var clen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, ab, cdz, cdet);
+            var clen = ArithmeticFunctions.ScaleExpansionZeroelim(4, ab, cdz, cdet);
 
             double[] abdet = new double[16];
-            var ablen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(alen, adet, blen, bdet, abdet);
+            var ablen = ArithmeticFunctions.FastExpansionSumZeroelim(alen, adet, blen, bdet, abdet);
             double[] fin1 = new double[192];
-            var finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(ablen, abdet, clen, cdet, fin1);
+            var finlength = ArithmeticFunctions.FastExpansionSumZeroelim(ablen, abdet, clen, cdet, fin1);
 
-            var det = ArithmeticFunctionsHelpers.Estimate(finlength, fin1);
+            var det = ArithmeticFunctions.Estimate(finlength, fin1);
 
             var errbound = MacrosHelpers.O3derrboundB * permanent;
             if ((det >= errbound) || (-det >= errbound))
@@ -228,24 +228,24 @@ namespace RobustPredicates
                 }
             }
             double[] bct = new double[8];
-            var bctlen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(bt_clen, bt_c, ct_blen, ct_b, bct);
+            var bctlen = ArithmeticFunctions.FastExpansionSumZeroelim(bt_clen, bt_c, ct_blen, ct_b, bct);
             double[] u = new double[4];
             double[] v = new double[12];
             double[] w = new double[16];
-            var wlength = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(bctlen, bct, adz, w);
-            finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(finlength, finnow, wlength, w,
+            var wlength = ArithmeticFunctions.ScaleExpansionZeroelim(bctlen, bct, adz, w);
+            finlength = ArithmeticFunctions.FastExpansionSumZeroelim(finlength, finnow, wlength, w,
                                                     finother);
             var finswap = finnow; finnow = finother; finother = finswap;
             double[] cat = new double[8];
-            var catlen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(ct_alen, ct_a, at_clen, at_c, cat);
-            wlength = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(catlen, cat, bdz, w);
-            finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(finlength, finnow, wlength, w,
+            var catlen = ArithmeticFunctions.FastExpansionSumZeroelim(ct_alen, ct_a, at_clen, at_c, cat);
+            wlength = ArithmeticFunctions.ScaleExpansionZeroelim(catlen, cat, bdz, w);
+            finlength = ArithmeticFunctions.FastExpansionSumZeroelim(finlength, finnow, wlength, w,
                                                     finother);
             finswap = finnow; finnow = finother; finother = finswap;
             double[] abt = new double[8];
-            var abtlen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(at_blen, at_b, bt_alen, bt_a, abt);
-            wlength = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(abtlen, abt, cdz, w);
-            finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(finlength, finnow, wlength, w,
+            var abtlen = ArithmeticFunctions.FastExpansionSumZeroelim(at_blen, at_b, bt_alen, bt_a, abt);
+            wlength = ArithmeticFunctions.ScaleExpansionZeroelim(abtlen, abt, cdz, w);
+            finlength = ArithmeticFunctions.FastExpansionSumZeroelim(finlength, finnow, wlength, w,
                                                     finother);
             finswap = finnow;
             finnow = finother;
@@ -253,22 +253,22 @@ namespace RobustPredicates
 
             if (adztail != 0.0)
             {
-                var vlength = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, bc, adztail, v);
-                finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(finlength, finnow, vlength, v,
+                var vlength = ArithmeticFunctions.ScaleExpansionZeroelim(4, bc, adztail, v);
+                finlength = ArithmeticFunctions.FastExpansionSumZeroelim(finlength, finnow, vlength, v,
                                                         finother);
                 finswap = finnow; finnow = finother; finother = finswap;
             }
             if (bdztail != 0.0)
             {
-                var vlength = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, ca, bdztail, v);
-                finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(finlength, finnow, vlength, v,
+                var vlength = ArithmeticFunctions.ScaleExpansionZeroelim(4, ca, bdztail, v);
+                finlength = ArithmeticFunctions.FastExpansionSumZeroelim(finlength, finnow, vlength, v,
                                                         finother);
                 finswap = finnow; finnow = finother; finother = finswap;
             }
             if (cdztail != 0.0)
             {
-                var vlength = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, ab, cdztail, v);
-                finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(finlength, finnow, vlength, v,
+                var vlength = ArithmeticFunctions.ScaleExpansionZeroelim(4, ab, cdztail, v);
+                finlength = ArithmeticFunctions.FastExpansionSumZeroelim(finlength, finnow, vlength, v,
                                                         finother);
                 finswap = finnow; finnow = finother; finother = finswap;
             }
@@ -279,14 +279,14 @@ namespace RobustPredicates
                 {
                     MacrosHelpers.TwoProduct(adxtail, bdytail, out double adxt_bdyt1, out double adxt_bdyt0);
                     MacrosHelpers.TwoOneProduct(adxt_bdyt1, adxt_bdyt0, cdz, out u[3], out u[2], out u[1], out u[0]);
-                    finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(finlength, finnow, 4, u, finother);
+                    finlength = ArithmeticFunctions.FastExpansionSumZeroelim(finlength, finnow, 4, u, finother);
                     finswap = finnow;
                     finnow = finother;
                     finother = finswap;
                     if (cdztail != 0.0)
                     {
                         MacrosHelpers.TwoOneProduct(adxt_bdyt1, adxt_bdyt0, cdztail, out u[3], out u[2], out u[1], out u[0]);
-                        finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(finlength, finnow, 4, u, finother);
+                        finlength = ArithmeticFunctions.FastExpansionSumZeroelim(finlength, finnow, 4, u, finother);
                         finswap = finnow;
                         finnow = finother;
                         finother = finswap;
@@ -297,14 +297,14 @@ namespace RobustPredicates
                     var negate = -adxtail;
                     MacrosHelpers.TwoProduct(negate, cdytail, out double adxt_cdyt1, out double adxt_cdyt0);
                     MacrosHelpers.TwoOneProduct(adxt_cdyt1, adxt_cdyt0, bdz, out u[3], out u[2], out u[1], out u[0]);
-                    finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(finlength, finnow, 4, u, finother);
+                    finlength = ArithmeticFunctions.FastExpansionSumZeroelim(finlength, finnow, 4, u, finother);
                     finswap = finnow;
                     finnow = finother;
                     finother = finswap;
                     if (bdztail != 0.0)
                     {
                         MacrosHelpers.TwoOneProduct(adxt_cdyt1, adxt_cdyt0, bdztail, out u[3], out u[2], out u[1], out u[0]);
-                        finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(finlength, finnow, 4, u, finother);
+                        finlength = ArithmeticFunctions.FastExpansionSumZeroelim(finlength, finnow, 4, u, finother);
                         finswap = finnow; finnow = finother; finother = finswap;
                     }
                 }
@@ -315,13 +315,13 @@ namespace RobustPredicates
                 {
                     MacrosHelpers.TwoProduct(bdxtail, cdytail, out double bdxt_cdyt1, out double bdxt_cdyt0);
                     MacrosHelpers.TwoOneProduct(bdxt_cdyt1, bdxt_cdyt0, adz, out u[3], out u[2], out u[1], out u[0]);
-                    finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(finlength, finnow, 4, u,
+                    finlength = ArithmeticFunctions.FastExpansionSumZeroelim(finlength, finnow, 4, u,
                                                             finother);
                     finswap = finnow; finnow = finother; finother = finswap;
                     if (adztail != 0.0)
                     {
                         MacrosHelpers.TwoOneProduct(bdxt_cdyt1, bdxt_cdyt0, adztail, out u[3], out u[2], out u[1], out u[0]);
-                        finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(finlength, finnow, 4, u,
+                        finlength = ArithmeticFunctions.FastExpansionSumZeroelim(finlength, finnow, 4, u,
                                                                 finother);
                         finswap = finnow; finnow = finother; finother = finswap;
                     }
@@ -331,13 +331,13 @@ namespace RobustPredicates
                     var negate = -bdxtail;
                     MacrosHelpers.TwoProduct(negate, adytail, out double bdxt_adyt1, out double bdxt_adyt0);
                     MacrosHelpers.TwoOneProduct(bdxt_adyt1, bdxt_adyt0, cdz, out u[3], out u[2], out u[1], out u[0]);
-                    finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(finlength, finnow, 4, u,
+                    finlength = ArithmeticFunctions.FastExpansionSumZeroelim(finlength, finnow, 4, u,
                                                             finother);
                     finswap = finnow; finnow = finother; finother = finswap;
                     if (cdztail != 0.0)
                     {
                         MacrosHelpers.TwoOneProduct(bdxt_adyt1, bdxt_adyt0, cdztail, out u[3], out u[2], out u[1], out u[0]);
-                        finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(finlength, finnow, 4, u,
+                        finlength = ArithmeticFunctions.FastExpansionSumZeroelim(finlength, finnow, 4, u,
                                                                 finother);
                         finswap = finnow; finnow = finother; finother = finswap;
                     }
@@ -349,13 +349,13 @@ namespace RobustPredicates
                 {
                     MacrosHelpers.TwoProduct(cdxtail, adytail, out double cdxt_adyt1, out double cdxt_adyt0);
                     MacrosHelpers.TwoOneProduct(cdxt_adyt1, cdxt_adyt0, bdz, out u[3], out u[2], out u[1], out u[0]);
-                    finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(finlength, finnow, 4, u,
+                    finlength = ArithmeticFunctions.FastExpansionSumZeroelim(finlength, finnow, 4, u,
                                                             finother);
                     finswap = finnow; finnow = finother; finother = finswap;
                     if (bdztail != 0.0)
                     {
                         MacrosHelpers.TwoOneProduct(cdxt_adyt1, cdxt_adyt0, bdztail, out u[3], out u[2], out u[1], out u[0]);
-                        finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(finlength, finnow, 4, u,
+                        finlength = ArithmeticFunctions.FastExpansionSumZeroelim(finlength, finnow, 4, u,
                                                                 finother);
                         finswap = finnow; finnow = finother; finother = finswap;
                     }
@@ -365,13 +365,13 @@ namespace RobustPredicates
                     var negate = -cdxtail;
                     MacrosHelpers.TwoProduct(negate, bdytail, out double cdxt_bdyt1, out double cdxt_bdyt0);
                     MacrosHelpers.TwoOneProduct(cdxt_bdyt1, cdxt_bdyt0, adz, out u[3], out u[2], out u[1], out u[0]);
-                    finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(finlength, finnow, 4, u,
+                    finlength = ArithmeticFunctions.FastExpansionSumZeroelim(finlength, finnow, 4, u,
                                                             finother);
                     finswap = finnow; finnow = finother; finother = finswap;
                     if (adztail != 0.0)
                     {
                         MacrosHelpers.TwoOneProduct(cdxt_bdyt1, cdxt_bdyt0, adztail, out u[3], out u[2], out u[1], out u[0]);
-                        finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(finlength, finnow, 4, u,
+                        finlength = ArithmeticFunctions.FastExpansionSumZeroelim(finlength, finnow, 4, u,
                                                                 finother);
                         finswap = finnow; finnow = finother; finother = finswap;
                     }
@@ -380,22 +380,22 @@ namespace RobustPredicates
 
             if (adztail != 0.0)
             {
-                wlength = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(bctlen, bct, adztail, w);
-                finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(finlength, finnow, wlength, w,
+                wlength = ArithmeticFunctions.ScaleExpansionZeroelim(bctlen, bct, adztail, w);
+                finlength = ArithmeticFunctions.FastExpansionSumZeroelim(finlength, finnow, wlength, w,
                                                         finother);
                 finswap = finnow; finnow = finother; finother = finswap;
             }
             if (bdztail != 0.0)
             {
-                wlength = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(catlen, cat, bdztail, w);
-                finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(finlength, finnow, wlength, w,
+                wlength = ArithmeticFunctions.ScaleExpansionZeroelim(catlen, cat, bdztail, w);
+                finlength = ArithmeticFunctions.FastExpansionSumZeroelim(finlength, finnow, wlength, w,
                                                         finother);
                 finswap = finnow; finnow = finother; finother = finswap;
             }
             if (cdztail != 0.0)
             {
-                wlength = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(abtlen, abt, cdztail, w);
-                finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(finlength, finnow, wlength, w,
+                wlength = ArithmeticFunctions.ScaleExpansionZeroelim(abtlen, abt, cdztail, w);
+                finlength = ArithmeticFunctions.FastExpansionSumZeroelim(finlength, finnow, wlength, w,
                                                         finother);
                 finswap = finnow; finnow = finother; finother = finswap;
             }

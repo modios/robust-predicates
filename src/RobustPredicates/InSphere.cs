@@ -52,90 +52,90 @@ namespace RobustPredicates
             double[] temp8a = new double[8];
             double[] temp8b = new double[8];
             double[] temp8c = new double[8];
-            var temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, cd, bez, temp8a);
-            var temp8blen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, bd, -cez, temp8b);
-            var temp8clen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, bc, dez, temp8c);
+            var temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, cd, bez, temp8a);
+            var temp8blen = ArithmeticFunctions.ScaleExpansionZeroelim(4, bd, -cez, temp8b);
+            var temp8clen = ArithmeticFunctions.ScaleExpansionZeroelim(4, bc, dez, temp8c);
             double[] temp16 = new double[16];
-            var temp16len = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a,
+            var temp16len = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a,
                                                     temp8blen, temp8b, temp16);
             double[] temp24 = new double[24];
-            var temp24len = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8clen, temp8c,
+            var temp24len = ArithmeticFunctions.FastExpansionSumZeroelim(temp8clen, temp8c,
                                                     temp16len, temp16, temp24);
 
             double[] temp48 = new double[48];
-            var temp48len = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp24len, temp24, aex, temp48);
+            var temp48len = ArithmeticFunctions.ScaleExpansionZeroelim(temp24len, temp24, aex, temp48);
             double[] xdet = new double[96];
-            var xlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp48len, temp48, -aex, xdet);
-            temp48len = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp24len, temp24, aey, temp48);
+            var xlen = ArithmeticFunctions.ScaleExpansionZeroelim(temp48len, temp48, -aex, xdet);
+            temp48len = ArithmeticFunctions.ScaleExpansionZeroelim(temp24len, temp24, aey, temp48);
             double[] ydet = new double[96];
-            var ylen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp48len, temp48, -aey, ydet);
-            temp48len = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp24len, temp24, aez, temp48);
+            var ylen = ArithmeticFunctions.ScaleExpansionZeroelim(temp48len, temp48, -aey, ydet);
+            temp48len = ArithmeticFunctions.ScaleExpansionZeroelim(temp24len, temp24, aez, temp48);
             double[] zdet = new double[96];
-            var zlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp48len, temp48, -aez, zdet);
+            var zlen = ArithmeticFunctions.ScaleExpansionZeroelim(temp48len, temp48, -aez, zdet);
 
             double[] xydet = new double[192];
-            var xylen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(xlen, xdet, ylen, ydet, xydet);
+            var xylen = ArithmeticFunctions.FastExpansionSumZeroelim(xlen, xdet, ylen, ydet, xydet);
             double[] adet = new double[288];
-            var alen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(xylen, xydet, zlen, zdet, adet);
+            var alen = ArithmeticFunctions.FastExpansionSumZeroelim(xylen, xydet, zlen, zdet, adet);
 
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, da, cez, temp8a);
-            temp8blen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, ac, dez, temp8b);
-            temp8clen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, cd, aez, temp8c);
-            temp16len = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a,
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, da, cez, temp8a);
+            temp8blen = ArithmeticFunctions.ScaleExpansionZeroelim(4, ac, dez, temp8b);
+            temp8clen = ArithmeticFunctions.ScaleExpansionZeroelim(4, cd, aez, temp8c);
+            temp16len = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a,
                                                     temp8blen, temp8b, temp16);
-            temp24len = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8clen, temp8c,
+            temp24len = ArithmeticFunctions.FastExpansionSumZeroelim(temp8clen, temp8c,
                                                     temp16len, temp16, temp24);
-            temp48len = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp24len, temp24, bex, temp48);
-            xlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp48len, temp48, bex, xdet);
-            temp48len = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp24len, temp24, bey, temp48);
-            ylen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp48len, temp48, bey, ydet);
-            temp48len = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp24len, temp24, bez, temp48);
-            zlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp48len, temp48, bez, zdet);
-            xylen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(xlen, xdet, ylen, ydet, xydet);
+            temp48len = ArithmeticFunctions.ScaleExpansionZeroelim(temp24len, temp24, bex, temp48);
+            xlen = ArithmeticFunctions.ScaleExpansionZeroelim(temp48len, temp48, bex, xdet);
+            temp48len = ArithmeticFunctions.ScaleExpansionZeroelim(temp24len, temp24, bey, temp48);
+            ylen = ArithmeticFunctions.ScaleExpansionZeroelim(temp48len, temp48, bey, ydet);
+            temp48len = ArithmeticFunctions.ScaleExpansionZeroelim(temp24len, temp24, bez, temp48);
+            zlen = ArithmeticFunctions.ScaleExpansionZeroelim(temp48len, temp48, bez, zdet);
+            xylen = ArithmeticFunctions.FastExpansionSumZeroelim(xlen, xdet, ylen, ydet, xydet);
             double[] bdet = new double[288];
-            var blen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(xylen, xydet, zlen, zdet, bdet);
+            var blen = ArithmeticFunctions.FastExpansionSumZeroelim(xylen, xydet, zlen, zdet, bdet);
 
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, ab, dez, temp8a);
-            temp8blen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, bd, aez, temp8b);
-            temp8clen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, da, bez, temp8c);
-            temp16len = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a,
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, ab, dez, temp8a);
+            temp8blen = ArithmeticFunctions.ScaleExpansionZeroelim(4, bd, aez, temp8b);
+            temp8clen = ArithmeticFunctions.ScaleExpansionZeroelim(4, da, bez, temp8c);
+            temp16len = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a,
                                                     temp8blen, temp8b, temp16);
-            temp24len = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8clen, temp8c,
+            temp24len = ArithmeticFunctions.FastExpansionSumZeroelim(temp8clen, temp8c,
                                                     temp16len, temp16, temp24);
-            temp48len = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp24len, temp24, cex, temp48);
-            xlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp48len, temp48, -cex, xdet);
-            temp48len = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp24len, temp24, cey, temp48);
-            ylen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp48len, temp48, -cey, ydet);
-            temp48len = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp24len, temp24, cez, temp48);
-            zlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp48len, temp48, -cez, zdet);
-            xylen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(xlen, xdet, ylen, ydet, xydet);
+            temp48len = ArithmeticFunctions.ScaleExpansionZeroelim(temp24len, temp24, cex, temp48);
+            xlen = ArithmeticFunctions.ScaleExpansionZeroelim(temp48len, temp48, -cex, xdet);
+            temp48len = ArithmeticFunctions.ScaleExpansionZeroelim(temp24len, temp24, cey, temp48);
+            ylen = ArithmeticFunctions.ScaleExpansionZeroelim(temp48len, temp48, -cey, ydet);
+            temp48len = ArithmeticFunctions.ScaleExpansionZeroelim(temp24len, temp24, cez, temp48);
+            zlen = ArithmeticFunctions.ScaleExpansionZeroelim(temp48len, temp48, -cez, zdet);
+            xylen = ArithmeticFunctions.FastExpansionSumZeroelim(xlen, xdet, ylen, ydet, xydet);
             double[] cdet = new double[288];
-            var clen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(xylen, xydet, zlen, zdet, cdet);
+            var clen = ArithmeticFunctions.FastExpansionSumZeroelim(xylen, xydet, zlen, zdet, cdet);
 
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, bc, aez, temp8a);
-            temp8blen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, ac, -bez, temp8b);
-            temp8clen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, ab, cez, temp8c);
-            temp16len = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a,
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, bc, aez, temp8a);
+            temp8blen = ArithmeticFunctions.ScaleExpansionZeroelim(4, ac, -bez, temp8b);
+            temp8clen = ArithmeticFunctions.ScaleExpansionZeroelim(4, ab, cez, temp8c);
+            temp16len = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a,
                                                     temp8blen, temp8b, temp16);
-            temp24len = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8clen, temp8c,
+            temp24len = ArithmeticFunctions.FastExpansionSumZeroelim(temp8clen, temp8c,
                                                     temp16len, temp16, temp24);
-            temp48len = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp24len, temp24, dex, temp48);
-            xlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp48len, temp48, dex, xdet);
-            temp48len = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp24len, temp24, dey, temp48);
-            ylen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp48len, temp48, dey, ydet);
-            temp48len = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp24len, temp24, dez, temp48);
-            zlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(temp48len, temp48, dez, zdet);
-            xylen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(xlen, xdet, ylen, ydet, xydet);
+            temp48len = ArithmeticFunctions.ScaleExpansionZeroelim(temp24len, temp24, dex, temp48);
+            xlen = ArithmeticFunctions.ScaleExpansionZeroelim(temp48len, temp48, dex, xdet);
+            temp48len = ArithmeticFunctions.ScaleExpansionZeroelim(temp24len, temp24, dey, temp48);
+            ylen = ArithmeticFunctions.ScaleExpansionZeroelim(temp48len, temp48, dey, ydet);
+            temp48len = ArithmeticFunctions.ScaleExpansionZeroelim(temp24len, temp24, dez, temp48);
+            zlen = ArithmeticFunctions.ScaleExpansionZeroelim(temp48len, temp48, dez, zdet);
+            xylen = ArithmeticFunctions.FastExpansionSumZeroelim(xlen, xdet, ylen, ydet, xydet);
             double[] ddet = new double[288];
-            var dlen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(xylen, xydet, zlen, zdet, ddet);
+            var dlen = ArithmeticFunctions.FastExpansionSumZeroelim(xylen, xydet, zlen, zdet, ddet);
 
             double[] abdet = new double[576];
             double[] cddet = new double[576];
             double[] fin1 = new double[1152];
-            var ablen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(alen, adet, blen, bdet, abdet);
-            var cdlen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(clen, cdet, dlen, ddet, cddet);
-            var finlength = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(ablen, abdet, cdlen, cddet, fin1);
-            var det = ArithmeticFunctionsHelpers.Estimate(finlength, fin1);
+            var ablen = ArithmeticFunctions.FastExpansionSumZeroelim(alen, adet, blen, bdet, abdet);
+            var cdlen = ArithmeticFunctions.FastExpansionSumZeroelim(clen, cdet, dlen, ddet, cddet);
+            var finlength = ArithmeticFunctions.FastExpansionSumZeroelim(ablen, abdet, cdlen, cddet, fin1);
+            var det = ArithmeticFunctions.Estimate(finlength, fin1);
             var errbound = MacrosHelpers.IsperrboundB * permanent;
             if ((det >= errbound) || (-det >= errbound))
             {
@@ -266,213 +266,213 @@ namespace RobustPredicates
             var temp8a = new double[8];
             var temp8b = new double[8];
             var temp16 = new double[16];
-            var temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, bc, pa[2], temp8a);
-            var temp8blen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, ac, -pb[2], temp8b);
-            var temp16len = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a, temp8blen, temp8b,
+            var temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, bc, pa[2], temp8a);
+            var temp8blen = ArithmeticFunctions.ScaleExpansionZeroelim(4, ac, -pb[2], temp8b);
+            var temp16len = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a, temp8blen, temp8b,
                                                     temp16);
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, ab, pc[2], temp8a);
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, ab, pc[2], temp8a);
             var abc = new double[24];
-            var abclen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a, temp16len, temp16,
+            var abclen = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a, temp16len, temp16,
                                                  abc);
 
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, cd, pb[2], temp8a);
-            temp8blen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, bd, -pc[2], temp8b);
-            temp16len = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a, temp8blen, temp8b,
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, cd, pb[2], temp8a);
+            temp8blen = ArithmeticFunctions.ScaleExpansionZeroelim(4, bd, -pc[2], temp8b);
+            temp16len = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a, temp8blen, temp8b,
                                                     temp16);
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, bc, pd[2], temp8a);
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, bc, pd[2], temp8a);
             var bcd = new double[24];
-            var bcdlen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a, temp16len, temp16,
+            var bcdlen = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a, temp16len, temp16,
                                                  bcd);
 
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, de, pc[2], temp8a);
-            temp8blen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, ce, -pd[2], temp8b);
-            temp16len = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a, temp8blen, temp8b,
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, de, pc[2], temp8a);
+            temp8blen = ArithmeticFunctions.ScaleExpansionZeroelim(4, ce, -pd[2], temp8b);
+            temp16len = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a, temp8blen, temp8b,
                                                     temp16);
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, cd, pe[2], temp8a);
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, cd, pe[2], temp8a);
             var cde = new double[24];
-            var cdelen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a, temp16len, temp16,
+            var cdelen = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a, temp16len, temp16,
                                                  cde);
 
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, ea, pd[2], temp8a);
-            temp8blen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, da, -pe[2], temp8b);
-            temp16len = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a, temp8blen, temp8b,
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, ea, pd[2], temp8a);
+            temp8blen = ArithmeticFunctions.ScaleExpansionZeroelim(4, da, -pe[2], temp8b);
+            temp16len = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a, temp8blen, temp8b,
                                                     temp16);
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, de, pa[2], temp8a);
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, de, pa[2], temp8a);
             var dea = new double[24];
-            var dealen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a, temp16len, temp16,
+            var dealen = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a, temp16len, temp16,
                                                  dea);
 
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, ab, pe[2], temp8a);
-            temp8blen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, eb, -pa[2], temp8b);
-            temp16len = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a, temp8blen, temp8b,
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, ab, pe[2], temp8a);
+            temp8blen = ArithmeticFunctions.ScaleExpansionZeroelim(4, eb, -pa[2], temp8b);
+            temp16len = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a, temp8blen, temp8b,
                                                     temp16);
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, ea, pb[2], temp8a);
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, ea, pb[2], temp8a);
             var eab = new double[24];
-            var eablen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a, temp16len, temp16,
+            var eablen = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a, temp16len, temp16,
                                                  eab);
 
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, bd, pa[2], temp8a);
-            temp8blen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, da, pb[2], temp8b);
-            temp16len = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a, temp8blen, temp8b,
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, bd, pa[2], temp8a);
+            temp8blen = ArithmeticFunctions.ScaleExpansionZeroelim(4, da, pb[2], temp8b);
+            temp16len = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a, temp8blen, temp8b,
                                                     temp16);
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, ab, pd[2], temp8a);
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, ab, pd[2], temp8a);
             var abd = new double[24];
-            var abdlen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a, temp16len, temp16,
+            var abdlen = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a, temp16len, temp16,
                                                  abd);
 
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, ce, pb[2], temp8a);
-            temp8blen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, eb, pc[2], temp8b);
-            temp16len = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a, temp8blen, temp8b,
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, ce, pb[2], temp8a);
+            temp8blen = ArithmeticFunctions.ScaleExpansionZeroelim(4, eb, pc[2], temp8b);
+            temp16len = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a, temp8blen, temp8b,
                                                     temp16);
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, bc, pe[2], temp8a);
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, bc, pe[2], temp8a);
             var bce = new double[24];
-            var bcelen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a, temp16len, temp16,
+            var bcelen = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a, temp16len, temp16,
                                                  bce);
 
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, da, pc[2], temp8a);
-            temp8blen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, ac, pd[2], temp8b);
-            temp16len = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a, temp8blen, temp8b,
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, da, pc[2], temp8a);
+            temp8blen = ArithmeticFunctions.ScaleExpansionZeroelim(4, ac, pd[2], temp8b);
+            temp16len = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a, temp8blen, temp8b,
                                                     temp16);
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, cd, pa[2], temp8a);
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, cd, pa[2], temp8a);
             var cda = new double[24];
-            var cdalen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a, temp16len, temp16,
+            var cdalen = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a, temp16len, temp16,
                                                  cda);
 
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, eb, pd[2], temp8a);
-            temp8blen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, bd, pe[2], temp8b);
-            temp16len = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a, temp8blen, temp8b,
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, eb, pd[2], temp8a);
+            temp8blen = ArithmeticFunctions.ScaleExpansionZeroelim(4, bd, pe[2], temp8b);
+            temp16len = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a, temp8blen, temp8b,
                                                     temp16);
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, de, pb[2], temp8a);
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, de, pb[2], temp8a);
             var deb = new double[24];
-            var deblen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a, temp16len, temp16,
+            var deblen = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a, temp16len, temp16,
                                                  deb);
 
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, ac, pe[2], temp8a);
-            temp8blen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, ce, pa[2], temp8b);
-            temp16len = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a, temp8blen, temp8b,
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, ac, pe[2], temp8a);
+            temp8blen = ArithmeticFunctions.ScaleExpansionZeroelim(4, ce, pa[2], temp8b);
+            temp16len = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a, temp8blen, temp8b,
                                                     temp16);
-            temp8alen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(4, ea, pc[2], temp8a);
+            temp8alen = ArithmeticFunctions.ScaleExpansionZeroelim(4, ea, pc[2], temp8a);
             var eac = new double[24];
-            var eaclen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp8alen, temp8a, temp16len, temp16,
+            var eaclen = ArithmeticFunctions.FastExpansionSumZeroelim(temp8alen, temp8a, temp16len, temp16,
                                                  eac);
 
             var temp48a = new double[48];
             var temp48b = new double[48];
-            var temp48alen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(cdelen, cde, bcelen, bce, temp48a);
-            var temp48blen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(deblen, deb, bcdlen, bcd, temp48b);
+            var temp48alen = ArithmeticFunctions.FastExpansionSumZeroelim(cdelen, cde, bcelen, bce, temp48a);
+            var temp48blen = ArithmeticFunctions.FastExpansionSumZeroelim(deblen, deb, bcdlen, bcd, temp48b);
             for (int i = 0; i < temp48blen; i++)
             {
                 temp48b[i] = -temp48b[i];
             }
 
             var bcde = new double[96];
-            var bcdelen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp48alen, temp48a,
+            var bcdelen = ArithmeticFunctions.FastExpansionSumZeroelim(temp48alen, temp48a,
                                                   temp48blen, temp48b, bcde);
 
             var temp192 = new double[192];
-            var xlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(bcdelen, bcde, pa[0], temp192);
+            var xlen = ArithmeticFunctions.ScaleExpansionZeroelim(bcdelen, bcde, pa[0], temp192);
 
             var det384x = new double[384];
             var det384y = new double[384];
             var det384z = new double[384];
-            xlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(xlen, temp192, pa[0], det384x);
-            var ylen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(bcdelen, bcde, pa[1], temp192);
-            ylen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(ylen, temp192, pa[1], det384y);
-            var zlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(bcdelen, bcde, pa[2], temp192);
-            zlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(zlen, temp192, pa[2], det384z);
+            xlen = ArithmeticFunctions.ScaleExpansionZeroelim(xlen, temp192, pa[0], det384x);
+            var ylen = ArithmeticFunctions.ScaleExpansionZeroelim(bcdelen, bcde, pa[1], temp192);
+            ylen = ArithmeticFunctions.ScaleExpansionZeroelim(ylen, temp192, pa[1], det384y);
+            var zlen = ArithmeticFunctions.ScaleExpansionZeroelim(bcdelen, bcde, pa[2], temp192);
+            zlen = ArithmeticFunctions.ScaleExpansionZeroelim(zlen, temp192, pa[2], det384z);
 
             var detxy = new double[786];
             var adet = new double[1152];
-            var xylen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(xlen, det384x, ylen, det384y, detxy);
-            var alen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(xylen, detxy, zlen, det384z, adet);
+            var xylen = ArithmeticFunctions.FastExpansionSumZeroelim(xlen, det384x, ylen, det384y, detxy);
+            var alen = ArithmeticFunctions.FastExpansionSumZeroelim(xylen, detxy, zlen, det384z, adet);
 
-            temp48alen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(dealen, dea, cdalen, cda, temp48a);
-            temp48blen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(eaclen, eac, cdelen, cde, temp48b);
+            temp48alen = ArithmeticFunctions.FastExpansionSumZeroelim(dealen, dea, cdalen, cda, temp48a);
+            temp48blen = ArithmeticFunctions.FastExpansionSumZeroelim(eaclen, eac, cdelen, cde, temp48b);
             for (int i = 0; i < temp48blen; i++)
             {
                 temp48b[i] = -temp48b[i];
             }
 
             var cdea = new double[1152];
-            var cdealen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp48alen, temp48a,
+            var cdealen = ArithmeticFunctions.FastExpansionSumZeroelim(temp48alen, temp48a,
                                                   temp48blen, temp48b, cdea);
-            xlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(cdealen, cdea, pb[0], temp192);
-            xlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(xlen, temp192, pb[0], det384x);
-            ylen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(cdealen, cdea, pb[1], temp192);
-            ylen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(ylen, temp192, pb[1], det384y);
-            zlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(cdealen, cdea, pb[2], temp192);
-            zlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(zlen, temp192, pb[2], det384z);
-            xylen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(xlen, det384x, ylen, det384y, detxy);
+            xlen = ArithmeticFunctions.ScaleExpansionZeroelim(cdealen, cdea, pb[0], temp192);
+            xlen = ArithmeticFunctions.ScaleExpansionZeroelim(xlen, temp192, pb[0], det384x);
+            ylen = ArithmeticFunctions.ScaleExpansionZeroelim(cdealen, cdea, pb[1], temp192);
+            ylen = ArithmeticFunctions.ScaleExpansionZeroelim(ylen, temp192, pb[1], det384y);
+            zlen = ArithmeticFunctions.ScaleExpansionZeroelim(cdealen, cdea, pb[2], temp192);
+            zlen = ArithmeticFunctions.ScaleExpansionZeroelim(zlen, temp192, pb[2], det384z);
+            xylen = ArithmeticFunctions.FastExpansionSumZeroelim(xlen, det384x, ylen, det384y, detxy);
             var bdet = new double[1152];
-            var blen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(xylen, detxy, zlen, det384z, bdet);
+            var blen = ArithmeticFunctions.FastExpansionSumZeroelim(xylen, detxy, zlen, det384z, bdet);
 
-            temp48alen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(eablen, eab, deblen, deb, temp48a);
-            temp48blen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(abdlen, abd, dealen, dea, temp48b);
+            temp48alen = ArithmeticFunctions.FastExpansionSumZeroelim(eablen, eab, deblen, deb, temp48a);
+            temp48blen = ArithmeticFunctions.FastExpansionSumZeroelim(abdlen, abd, dealen, dea, temp48b);
             for (int i = 0; i < temp48blen; i++)
             {
                 temp48b[i] = -temp48b[i];
             }
 
             var deab = new double[96];
-            var deablen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp48alen, temp48a,
+            var deablen = ArithmeticFunctions.FastExpansionSumZeroelim(temp48alen, temp48a,
                                                   temp48blen, temp48b, deab);
-            xlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(deablen, deab, pc[0], temp192);
-            xlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(xlen, temp192, pc[0], det384x);
-            ylen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(deablen, deab, pc[1], temp192);
-            ylen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(ylen, temp192, pc[1], det384y);
-            zlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(deablen, deab, pc[2], temp192);
-            zlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(zlen, temp192, pc[2], det384z);
-            xylen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(xlen, det384x, ylen, det384y, detxy);
+            xlen = ArithmeticFunctions.ScaleExpansionZeroelim(deablen, deab, pc[0], temp192);
+            xlen = ArithmeticFunctions.ScaleExpansionZeroelim(xlen, temp192, pc[0], det384x);
+            ylen = ArithmeticFunctions.ScaleExpansionZeroelim(deablen, deab, pc[1], temp192);
+            ylen = ArithmeticFunctions.ScaleExpansionZeroelim(ylen, temp192, pc[1], det384y);
+            zlen = ArithmeticFunctions.ScaleExpansionZeroelim(deablen, deab, pc[2], temp192);
+            zlen = ArithmeticFunctions.ScaleExpansionZeroelim(zlen, temp192, pc[2], det384z);
+            xylen = ArithmeticFunctions.FastExpansionSumZeroelim(xlen, det384x, ylen, det384y, detxy);
             var cdet = new double[1152];
-            var clen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(xylen, detxy, zlen, det384z, cdet);
+            var clen = ArithmeticFunctions.FastExpansionSumZeroelim(xylen, detxy, zlen, det384z, cdet);
 
-            temp48alen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(abclen, abc, eaclen, eac, temp48a);
-            temp48blen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(bcelen, bce, eablen, eab, temp48b);
+            temp48alen = ArithmeticFunctions.FastExpansionSumZeroelim(abclen, abc, eaclen, eac, temp48a);
+            temp48blen = ArithmeticFunctions.FastExpansionSumZeroelim(bcelen, bce, eablen, eab, temp48b);
             for (int i = 0; i < temp48blen; i++)
             {
                 temp48b[i] = -temp48b[i];
             }
 
             var eabc = new double[96];
-            var eabclen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp48alen, temp48a,
+            var eabclen = ArithmeticFunctions.FastExpansionSumZeroelim(temp48alen, temp48a,
                                                   temp48blen, temp48b, eabc);
-            xlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(eabclen, eabc, pd[0], temp192);
-            xlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(xlen, temp192, pd[0], det384x);
-            ylen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(eabclen, eabc, pd[1], temp192);
-            ylen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(ylen, temp192, pd[1], det384y);
-            zlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(eabclen, eabc, pd[2], temp192);
-            zlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(zlen, temp192, pd[2], det384z);
-            xylen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(xlen, det384x, ylen, det384y, detxy);
+            xlen = ArithmeticFunctions.ScaleExpansionZeroelim(eabclen, eabc, pd[0], temp192);
+            xlen = ArithmeticFunctions.ScaleExpansionZeroelim(xlen, temp192, pd[0], det384x);
+            ylen = ArithmeticFunctions.ScaleExpansionZeroelim(eabclen, eabc, pd[1], temp192);
+            ylen = ArithmeticFunctions.ScaleExpansionZeroelim(ylen, temp192, pd[1], det384y);
+            zlen = ArithmeticFunctions.ScaleExpansionZeroelim(eabclen, eabc, pd[2], temp192);
+            zlen = ArithmeticFunctions.ScaleExpansionZeroelim(zlen, temp192, pd[2], det384z);
+            xylen = ArithmeticFunctions.FastExpansionSumZeroelim(xlen, det384x, ylen, det384y, detxy);
             var ddet = new double[1152];
-            var dlen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(xylen, detxy, zlen, det384z, ddet);
+            var dlen = ArithmeticFunctions.FastExpansionSumZeroelim(xylen, detxy, zlen, det384z, ddet);
 
-            temp48alen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(bcdlen, bcd, abdlen, abd, temp48a);
-            temp48blen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(cdalen, cda, abclen, abc, temp48b);
+            temp48alen = ArithmeticFunctions.FastExpansionSumZeroelim(bcdlen, bcd, abdlen, abd, temp48a);
+            temp48blen = ArithmeticFunctions.FastExpansionSumZeroelim(cdalen, cda, abclen, abc, temp48b);
             for (int i = 0; i < temp48blen; i++)
             {
                 temp48b[i] = -temp48b[i];
             }
 
             var abcd = new double[96];
-            var abcdlen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(temp48alen, temp48a,
+            var abcdlen = ArithmeticFunctions.FastExpansionSumZeroelim(temp48alen, temp48a,
                                                   temp48blen, temp48b, abcd);
-            xlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(abcdlen, abcd, pe[0], temp192);
-            xlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(xlen, temp192, pe[0], det384x);
-            ylen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(abcdlen, abcd, pe[1], temp192);
-            ylen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(ylen, temp192, pe[1], det384y);
-            zlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(abcdlen, abcd, pe[2], temp192);
-            zlen = ArithmeticFunctionsHelpers.ScaleExpansionZeroelim(zlen, temp192, pe[2], det384z);
-            xylen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(xlen, det384x, ylen, det384y, detxy);
+            xlen = ArithmeticFunctions.ScaleExpansionZeroelim(abcdlen, abcd, pe[0], temp192);
+            xlen = ArithmeticFunctions.ScaleExpansionZeroelim(xlen, temp192, pe[0], det384x);
+            ylen = ArithmeticFunctions.ScaleExpansionZeroelim(abcdlen, abcd, pe[1], temp192);
+            ylen = ArithmeticFunctions.ScaleExpansionZeroelim(ylen, temp192, pe[1], det384y);
+            zlen = ArithmeticFunctions.ScaleExpansionZeroelim(abcdlen, abcd, pe[2], temp192);
+            zlen = ArithmeticFunctions.ScaleExpansionZeroelim(zlen, temp192, pe[2], det384z);
+            xylen = ArithmeticFunctions.FastExpansionSumZeroelim(xlen, det384x, ylen, det384y, detxy);
             var edet = new double[1152];
-            var elen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(xylen, detxy, zlen, det384z, edet);
+            var elen = ArithmeticFunctions.FastExpansionSumZeroelim(xylen, detxy, zlen, det384z, edet);
             var abdet = new double[2304];
-            var ablen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(alen, adet, blen, bdet, abdet);
+            var ablen = ArithmeticFunctions.FastExpansionSumZeroelim(alen, adet, blen, bdet, abdet);
             var cddet = new double[2304];
-            var cdlen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(clen, cdet, dlen, ddet, cddet);
+            var cdlen = ArithmeticFunctions.FastExpansionSumZeroelim(clen, cdet, dlen, ddet, cddet);
             var cdedet = new double[3456];
-            cdelen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(cdlen, cddet, elen, edet, cdedet);
+            cdelen = ArithmeticFunctions.FastExpansionSumZeroelim(cdlen, cddet, elen, edet, cdedet);
             var deter = new double[5760];
-            var deterlen = ArithmeticFunctionsHelpers.FastExpansionSumZeroelim(ablen, abdet, cdelen, cdedet, deter);
+            var deterlen = ArithmeticFunctions.FastExpansionSumZeroelim(ablen, abdet, cdelen, cdedet, deter);
 
             return deter[deterlen - 1];
         }

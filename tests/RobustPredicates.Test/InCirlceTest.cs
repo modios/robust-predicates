@@ -7,7 +7,7 @@ namespace RobustPredicates.Test
 {
     public class InCirlceTest
     {
-        private const int NSimpleData = 100;
+        private const int NSimpleData = 1000;
         private const int NPscicoData = 1000;
 
         [Fact]
@@ -36,9 +36,14 @@ namespace RobustPredicates.Test
         public void Fast_FromFile_ShouldSucceed()
         {
             double[] numbers =
-              File.ReadAllLines("test_data/simple_data/incricle-poinst2d.txt").Select(n => n.Split()).SelectMany(x => x).Select(s => double.Parse(s)).ToArray();
+              File.ReadAllLines("test_data/simple_data/incricle-poinst2d.txt")
+              .Select(n => n.Split()).SelectMany(x => x)
+              .Select(s => double.Parse(s)).ToArray();
             double[] results =
-             File.ReadAllLines("test_data/simple_data/results-incircle.txt").Select(n => n.Split()).SelectMany(x => x).Select(s => double.Parse(s)).ToArray();
+             File.ReadAllLines("test_data/simple_data/results-incircle.txt")
+             .Select(n => n.Split()).SelectMany(x => x)
+             .Select(s => double.Parse(s)).ToArray();
+
             int count = 0;
             for (int i = 0; i < NSimpleData; i += 8)
             {

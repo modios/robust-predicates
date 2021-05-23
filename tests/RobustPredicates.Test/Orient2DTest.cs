@@ -7,7 +7,7 @@ namespace RobustPredicates.Test
 {
     public class Orient2DTest
     {
-        private const int NSimpleData = 100;
+        private const int NSimpleData = 1000;
         private const int NPscicoData = 1000;
 
         [Fact]
@@ -81,10 +81,10 @@ namespace RobustPredicates.Test
             int count = 0;
             for (int i = 0; i < NSimpleData; i += 6)
             {
-                Assert.Equal(results[count++], Orient2D.Fast(
+                Assert.Equal(Math.Sign(results[count++]), Math.Sign(Orient2D.Fast(
                     new double[] { points[i], points[i + 1] },
                     new double[] { points[i + 2], points[i + 3] },
-                    new double[] { points[i + 4], points[i + 5] }), 4);
+                    new double[] { points[i + 4], points[i + 5] })));
             }
         }
 

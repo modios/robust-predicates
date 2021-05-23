@@ -1,7 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <Description>Robust predicates for computational geometry.
+A port to C# of the robust predicates for computational geomerty code from Jonathan Richard Shewchuk.</Description>
+    <Company />
+    <Product>Robust predicates for computational geometry</Product>
+    <Authors>modios</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Copyright>modios</Copyright>
+    <RepositoryUrl>https://github.com/modios/robust-predicates</RepositoryUrl>
+    <Version>1.0.0-beta</Version>
   </PropertyGroup>
 
 </Project>
